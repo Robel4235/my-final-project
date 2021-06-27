@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.all{
+  display: none;
+}
+.rightSide{
+  position: relative;
+ left: 2.5cm ;
+ bottom: 4cm;
+}
+
+.Img{
+  width: auto;
+  height: auto;
+  border-top: 1.5px solid black;
+  border-left:  1.5px solid black;
+  border-right:  1.5px solid black;
+  border-bottom:  1.5px solid black;
+}
