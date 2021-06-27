@@ -10,7 +10,7 @@ export default function WeatherPage(props){
   const [cityCondition,setCityCondition]=useState({})
   const [forecastList,setforecastList]=useState([])
   const [currentTemp,setCurrentTemp]=useState(0)
-  const key ='B6njxQ66LMTlUo0IvAs0YDcIsLK4GUyc'
+  const key ='W2pZfwHWyKHxdJDCBBrV9J1miEYGW6Vv'
   const tempDefault=null;
   //get city information
  const getCity =async(city)=>{
