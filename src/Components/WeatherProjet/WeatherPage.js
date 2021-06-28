@@ -10,7 +10,7 @@ export default function WeatherPage(props){
   const [cityCondition,setCityCondition]=useState({})
   const [forecastList,setforecastList]=useState([])
   const [currentTemp,setCurrentTemp]=useState(0)
-  const key ='6ZRXGcGjJkGVkunn2MRYb5zp5egELGwW'
+  const key ='hMhhdlnhjpuHfSor3DS4Nj1TaiOC5T5h'
   const tempDefault=null;
   const aplhChecker =(str)=>{
      let checker =false;
