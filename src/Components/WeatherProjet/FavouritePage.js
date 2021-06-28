@@ -8,7 +8,7 @@ export default function FavouritePage(props){
     return(
         <div >
             {props.favouriteList.map((element)=>(     
-                <td>
+                <td className='card'>
                     <Link to='/'>
                     <ChoosenFavourite cityInfo={element.cityInfo} cityCondition={element.cityCondition} forecastList={element.forecastList}
                      setChoosenCity={props.setChoosenCity} cityName={element.cityName}  setFevCityInfo={props.setFevCityInfo}

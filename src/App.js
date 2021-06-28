@@ -3,6 +3,8 @@ import React, { useState,useEffect } from 'react';
 import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import WeatherPage from './Components/WeatherProjet/WeatherPage';
 import FavouritePage from './Components/WeatherProjet/FavouritePage'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
@@ -13,11 +15,12 @@ function App() {
   const [fevForecastList,setFevForecastList]=useState([]);
 
   return (
-    <div className="App">        
+    <div className="container">        
         <Router>    
-          <br />
-         <Link to='/'><button onClick={()=>setChoosenCity({choosenName:'',choosenKey:''})}>Home</button></Link>  <Link to='/favouritepage'><button>Favourite</button> </Link>
-_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+          <br/>
+         <Link to='/'><button className='btn btn-outline-secondary' onClick={()=>setChoosenCity({choosenName:'',choosenKey:''})}>Home</button ></Link> 
+         {" "} <Link to='/favouritepage'><button className='btn btn-outline-secondary'>Favourite</button> </Link>
+
      
           <Switch>
              <Route exact path='/' component={() => (<WeatherPage setChoosenCity={setChoosenCity} fevCityInfo={fevCityInfo}

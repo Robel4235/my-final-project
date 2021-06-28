@@ -9,6 +9,7 @@ export default function FavouriteOperator(props){
   const addToFavouriteList=()=>{
     debugger;
         let finder =false ;
+
         let inxToDelete=0;
         for (let i=0; i<props.favouriteList.length;i++){
             if (props.favouriteList[i].cityName==props.cityName){
@@ -50,8 +51,8 @@ export default function FavouriteOperator(props){
     }
     return(
         <div >  
-            {checkLiked()==true? <AiFillHeart color='red' className='heartIcon' size='1cm'/>:<AiOutlineHeart className='heartIcon' size='1cm'/> }        
-                 <button className='addtofavobutton' onClick={()=>{addToFavouriteList()}}>Add to Favourite</button>  
+            {checkLiked()==true? <AiFillHeart color='red'  size='1cm'/>:<AiOutlineHeart  size='1cm'/> }        
+                 <button className='btn btn-outline-secondary' onClick={()=>{addToFavouriteList()}}>Add to Favourite</button>  
         </div>
     )
 }

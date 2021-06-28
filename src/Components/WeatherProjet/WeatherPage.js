@@ -10,10 +10,37 @@ export default function WeatherPage(props){
   const [cityCondition,setCityCondition]=useState({})
   const [forecastList,setforecastList]=useState([])
   const [currentTemp,setCurrentTemp]=useState(0)
-  const key ='W2pZfwHWyKHxdJDCBBrV9J1miEYGW6Vv'
+  const key ='6ZRXGcGjJkGVkunn2MRYb5zp5egELGwW'
   const tempDefault=null;
+  const aplhChecker =(str)=>{
+     let checker =false;
+     for (let i=0; i<str.length;i++){
+       
+        if (str.charAt(i)>='A'&& str.charAt(i)<='Z' || str.charAt(i)>='a'&& str.charAt(i)<='z'|| str.charAt(i)==" "){
+                 checker =true;
+           }else {
+              checker=false;
+              break;
+           }
+        }
+        if (checker==true){
+           return true
+        }else{
+           return false
+        }
+
+     }
+  
   //get city information
  const getCity =async(city)=>{
+    debugger;
+    if (city==''){
+       city ='tel aviv'
+    }else {
+      if (aplhChecker(city)==false) {
+         return false
+       }
+    }
     try {
       const base ='https://dataservice.accuweather.com/locations/v1/cities/autocomplete';
       const query=`?apikey=${key}&q=${city}`;
@@ -29,6 +56,11 @@ export default function WeatherPage(props){
  } 
  //get weather information
  const getWeather =async(id)=>{
+    if (id==undefined){
+       alert ('Search only in English')
+       return 
+    }
+   
     try {
       const base ='https://dataservice.accuweather.com/currentconditions/v1/';
       const query=`${id}?apikey=${key}`;
@@ -60,7 +92,6 @@ export default function WeatherPage(props){
  } 
  
 const checkDefault =()=>{
-   debugger;
    if (cityName=='' && props.choosenCityName==''&& props.choosenCityKey=='' && forecastList.length==0 &&
     Object.entries(cityInfo).length=== 0&& Object.entries(cityCondition).length=== 0){  
       getCity('tel aviv')
@@ -78,48 +109,44 @@ const checkDefault =()=>{
         // getWeather(props.choosenCityKey)
       }else{
          return null;
-
       }
      
    }
 }
 //.catch(err=>console.log(err))
     return(
-        <div>
-            
-               
-                   
-                <input type="text" placeholder='Enter the city here..' onChange={e=>setCityName(e.target.value)} /> 
-                 <button onClick={()=>{getCity(cityName).then(data=>{getWeather(data.Key)}).then(data=>{console.log(data)})      
+        <div className="card">    
+                <input className='form-control' type="text" placeholder='Enter the city here..' onChange={e=>setCityName(e.target.value)} /> 
+                 <button className='btn btn-secondary' onClick={()=>{getCity(cityName).then(data=>{getWeather(data.Key)}).then(data=>{console.log(data)})      
                  }}>Search</button>  <br /> <br />
-                 <div className='mainbox'>
-                    <div>
+                 <div className='card'>
+                    <div className='likeButton'>
                         {checkDefault()==false?
                         <FavouriteOperator cityInfo={props.fevCityInfo} cityCondition={props.sevCityCondition}
                          forecastList={props.fevForecastList} 
-                        cityKey={props.choosenCityKey} cityName={props.choosenCityName} 
+                         cityKey={props.choosenCityKey} cityName={props.choosenCityName} 
                          temperature={props.favouriteList.temperature} condition={props.sevCityCondition.WeatherText}  
                          favouriteList={props.favouriteList} setFavouriteList={props.setFavouriteList}
                          liked={props.liked} setLiked={props.setLiked}/>:
 
                          <FavouriteOperator cityInfo={cityInfo} cityCondition={cityCondition} forecastList={forecastList} 
-                       cityKey={cityInfo.Key} cityName={cityInfo.LocalizedName} 
-                        temperature={currentTemp} condition={cityCondition.WeatherText}  
-                        favouriteList={props.favouriteList} setFavouriteList={props.setFavouriteList}
-                        liked={props.liked} setLiked={props.setLiked}/>
+                         cityKey={cityInfo.Key} cityName={cityInfo.LocalizedName} 
+                         temperature={currentTemp} condition={cityCondition.WeatherText}  
+                         favouriteList={props.favouriteList} setFavouriteList={props.setFavouriteList}
+                         liked={props.liked} setLiked={props.setLiked}/>
                         }
                       
-                    </div>
+                    </div >
                          {
                             checkDefault()==false?
-                            <h3  id='cityNameBoxone' className='leftToTheBox'>{props.choosenCityName}</h3>:
-                            <h3  id='cityNameBoxone' className='leftToTheBox'>{cityInfo.LocalizedName}</h3>
+                            <h3  id='cityNameBoxone' className='text-left'>{props.choosenCityName}</h3>:
+                            <h3  id='cityNameBoxone' className='text-left'>{cityInfo.LocalizedName}</h3>
                          }
 
                          {
                             checkDefault()==false?
-                            <h3 className='leftToTheBox'>{props.favouriteList[0].temperature} °C</h3>:
-                            <h3 className='leftToTheBox'>{currentTemp} °C</h3>
+                            <h3 className='text-left'>{props.favouriteList[0].temperature} °C</h3>:
+                            <h3 className='text-left'>{currentTemp} °C</h3>
                          }
                         
                         {
@@ -129,22 +156,22 @@ const checkDefault =()=>{
                          }
                         
                          <br /> <br />
-                    <div> 
+                     
                         {checkDefault()==false?
                         props.fevForecastList.map((element)=>(
-                            <td>
+                            <p className='card'   >
                              {<ForecastCard date={element.Date} condition={element.Day.IconPhrase}
                               tempmax={element.Temperature.Maximum.Value} tempmin={element.Temperature.Minimum.Value}/>}
-                         </td>    
+                            </p>    
                         )): forecastList.map((element)=>(
-                            <td>
+                            < p className='card'> 
                                 {<ForecastCard date={element.Date} condition={element.Day.IconPhrase}
                                  tempmax={element.Temperature.Maximum.Value} tempmin={element.Temperature.Minimum.Value}/>}
-                            </td>                      
+                            </p>                      
                          ))
                     }
                       {}
-                   </div>
+                 
                  </div>  
         </div>
     )

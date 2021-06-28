@@ -10,8 +10,8 @@ export default function ChoosenFavourite(props){
         props.setFevForecastList(props.forecastList);
     }
     return(
-        <div>   
-                <button className='forecastcard' onClick={()=>{setTheChoosenCity(props.cityName,props.cityKey)}}>
+        <div className='card'>   
+                <button className='card' onClick={()=>{setTheChoosenCity(props.cityName,props.cityKey)}}>
                     <h6>{props.cityName}</h6>
                     <h5>{props.temperature}°C</h5>
                     <h5>{props.condition} </h5>

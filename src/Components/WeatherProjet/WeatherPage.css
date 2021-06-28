@@ -1,33 +1,11 @@
-.mainbox{
-    width: 22.5cm;
-    height: 15cm;
-    border: 2px solid black;
-    position: relative;
-    left: 21%;
-}
-.addtofavobutton{
-    position: relative;
-    left:8.5cm;
-}
-.heartIcon{
-    position: relative;
-    top:0.4cm ;
-    left: 8cm;
-}
-.leftToTheBox{
-    position: relative;
-    right: 5cm;
-}
+
 .forecastcard{
-   position: relative;
    left: 1cm;
-   width: 4cm;
+   width: 3cm;
    height: 6cm;
    border: 2px solid black;
 }
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
+
+  
+  
   
